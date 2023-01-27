@@ -53,7 +53,6 @@ class GetBlogResponseModel(BaseResponseModel):
 
 
 async def get_all_blogs():
-
   with Session(db_engine) as session:
     data = session.query(Blog).all()
     return {'status_code':200, 'success':True, 'data':data}
