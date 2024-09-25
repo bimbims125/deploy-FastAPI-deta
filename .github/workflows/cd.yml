@@ -26,7 +26,7 @@ jobs:
           chmod 600 fastapi-blogs-app.pem
 
           # Connect to EC2 and deploy
-          ssh -i $EC2_SSH_KEY $EC2_USER@ec2-$EC2_HOST.ap-southeast-1.compute.amazonaws.com << 'EOF'
+          ssh -i fastapi-blogs-app.pem $EC2_USER@ec2-$EC2_HOST.ap-southeast-1.compute.amazonaws.com << 'EOF'
             # Navigate to your app directory
             cd FastAPI-SQLAlchemy  # Change this to your app's path
 
