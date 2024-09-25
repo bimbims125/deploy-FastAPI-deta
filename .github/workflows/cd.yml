@@ -49,4 +49,4 @@ jobs:
           EOF
 
           # Clean up the SSH key file
-          rm fastapi-blogs-appp.pem
+          rm fastapi-blogs-app.pem
