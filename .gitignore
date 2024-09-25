@@ -5,3 +5,4 @@ env/
 test.db
 .pytest_cache/
 __pycache__
+fastapi-blogs-app.pem

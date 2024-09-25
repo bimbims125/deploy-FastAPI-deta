@@ -22,5 +22,5 @@ async def root(request: Request):
 
 if  __name__ == '__main__':
   Base.metadata.create_all(db_engine)
-  uvicorn.run('app:app', reload=True)
+  uvicorn.run('app:app', host='0.0.0.0', port='9000', reload=True)
 
