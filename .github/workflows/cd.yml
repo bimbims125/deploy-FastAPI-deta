@@ -14,6 +14,17 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: '3.12'  # Specify your Python version
+      - name: Set up Node.js for PM2
+        run: |
+          # Install NVM
+          curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.5/install.sh | bash
+          # Source NVM to make it available in the current shell session
+          export NVM_DIR="$HOME/.nvm"
+          [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+          # Install the latest Node.js version
+          nvm install v20.16.0
+          # Install PM2 globally
+          npm install -g pm2
 
       - name: Deploy to EC2
         env:
