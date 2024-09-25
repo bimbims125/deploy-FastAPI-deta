@@ -25,7 +25,8 @@ router.add_api_route(
 router.add_api_route(
   '/blog/add',
   create_blog,
-  methods=["POST"]
+  methods=["POST"],
+  status_code=201
 )
 
 router.add_api_route(

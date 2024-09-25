@@ -23,7 +23,7 @@ class BaseResponseModel(BaseModel):
   message: str = 'Success'
 
   class Config:
-      schema_extra = {
+      json_schema_extra = {
           'example': {
               'data':None,
               'meta':{},
@@ -35,7 +35,7 @@ class BaseResponseModel(BaseModel):
 
 class GetBlogResponseModel(BaseResponseModel):
   class Config:
-    schema_extra = {
+    json_schema_extra = {
           'example':{
               'data':{
                   'id':1,
@@ -49,7 +49,7 @@ class GetBlogResponseModel(BaseResponseModel):
               'message':'Success'
           }
       }
-    orm_mode = True
+    from_attributes = True
 
 
 async def get_all_blogs():
@@ -64,12 +64,11 @@ async def get_blog(slug:str):
     raise HTTPException(status_code=404, detail='Blog not found')
 
 async def create_blog(title:str=Body(), body:str=Body(), author_id:int=Body()):
-
   with Session(db_engine) as session:
     try:
       session.add(Blog(title=title, slug=slugify(title),body=body, author_id=author_id))
       session.commit()
-      return {'status_code':200, 'success':True}
+      return {'status_code':201, 'success':True}
     except:
       raise HTTPException(status_code=422, detail=f"Blog with title '{title}' already exists, change the title!")
 
