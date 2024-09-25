@@ -8,7 +8,7 @@ class Blogs(BaseModel):
   body:str
 
   class Config:
-    orm_mode = True
+    from_attributes = True
 
 class BaseResponseModel(BaseModel):
   data:Union[dict, list] = None
@@ -18,7 +18,7 @@ class BaseResponseModel(BaseModel):
   message: str = 'Success'
 
   class Config:
-      schema_extra = {
+      json_schema_extra = {
           'example': {
               'data':None,
               'meta':{},

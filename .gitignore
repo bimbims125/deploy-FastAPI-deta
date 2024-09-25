@@ -1,3 +1,7 @@
 .deta/
 fastapi.zip
 *.pyc
+env/
+test.db
+.pytest_cache/
+__pycache__
