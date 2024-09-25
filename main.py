@@ -14,6 +14,7 @@ from app.models import Base
 db_engine = create_engine(conn)
 
 templates = Jinja2Templates(directory="app/templates")
+Base.metadata.create_all(db_engine)
 
 @app.get('/')
 async def root(request: Request):
@@ -24,6 +25,5 @@ async def test_deploy(request: Request):
   return {'message':'berhasil deploy ulang!'}
 
 if  __name__ == '__main__':
-  Base.metadata.create_all(db_engine)
   uvicorn.run('app:app', host='0.0.0.0', port=9000, reload=True)
 
