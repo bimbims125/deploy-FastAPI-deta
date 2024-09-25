@@ -39,8 +39,10 @@ jobs:
             # Pull the latest changes from your repository
             git pull origin master # Change this to the branch you are deploying from
 
-            # Create virtual environment
-            python3 -m venv venv
+            # Create virtual environment if it doesn't exist
+            if [ ! -d "venv" ]; then
+              python3 -m venv venv
+            fi
 
             # Activate virtual environment
             source venv/bin/activate
@@ -48,10 +50,11 @@ jobs:
             # Install or update your Python dependencies
             pip install -r requirements.txt
 
-            # Restart your FastAPI application (assuming you use Uvicorn or Gunicorn)
-            # If you are using a service manager like systemd, use systemctl restart
-            # Example for Uvicorn:
-            python3 main.py
+            # Kill any existing Uvicorn processes
+            pkill -f "uvicorn main:app" || true
+
+            # Restart your FastAPI application
+            nohup uvicorn main:app --host 0.0.0.0 --port 9000 &
           EOF
 
           # Clean up the SSH key file
