@@ -19,6 +19,9 @@ templates = Jinja2Templates(directory="app/templates")
 async def root(request: Request):
   return templates.TemplateResponse('welcome.html', {'request': request})
 
+@app.get('/test-deploy')
+async def test_deploy(request: Request):
+  return {'message':'berhasil deploy ulang!'}
 
 if  __name__ == '__main__':
   Base.metadata.create_all(db_engine)
