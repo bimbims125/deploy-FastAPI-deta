@@ -50,11 +50,8 @@ jobs:
             # Install or update your Python dependencies
             pip install -r requirements.txt
 
-            # Kill any existing Uvicorn processes
-            pkill -f "uvicorn main:app" || true
-
-            # Restart your FastAPI application
-            nohup uvicorn main:app --host 0.0.0.0 --port 9000 &
+            # Use PM2 to manage the FastAPI application
+            pm2 start python3 --name "blogs-app" -- run main.py || pm2 restart blogs-app
           EOF
 
           # Clean up the SSH key file
