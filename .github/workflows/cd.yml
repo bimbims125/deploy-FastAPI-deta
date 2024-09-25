@@ -9,16 +9,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
           python-version: '3.12'  # Specify your Python version
-
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
 
       - name: Deploy to EC2
         env:
@@ -43,7 +38,7 @@ jobs:
 
             # Activate virtual environtment
             source venv/bin/activate
-            
+
             # Install or update your Python dependencies
             pip install -r requirements.txt
 
