@@ -47,6 +47,14 @@ jobs:
             # Navigate to your app directory
             cd FastAPI-SQLAlchemy  # Change this to your app's path
 
+            # Load NVM and install PM2 if it is not installed
+            export NVM_DIR="$HOME/.nvm"
+            [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+            # Check if PM2 is installed; if not, install it
+            if ! command -v pm2 &> /dev/null; then
+              npm install -g pm2
+            fi
+
             # Pull the latest changes from your repository
             git pull origin master # Change this to the branch you are deploying from
 
