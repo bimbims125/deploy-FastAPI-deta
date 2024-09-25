@@ -25,6 +25,9 @@ jobs:
           echo "$EC2_SSH_KEY" > fastapi-blogs-app.pem
           chmod 600 fastapi-blogs-app.pem
 
+          # Ensure .ssh directory exists
+          mkdir -p ~/.ssh
+
           # Add the EC2 host to known hosts
           ssh-keyscan -H ec2-$EC2_HOST.ap-southeast-1.compute.amazonaws.com >> ~/.ssh/known_hosts
 
